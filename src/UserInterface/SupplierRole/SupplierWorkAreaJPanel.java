@@ -1,5 +1,6 @@
 package UserInterface.SupplierRole;
 
+import Business.Supplier;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -9,11 +10,13 @@ import javax.swing.JPanel;
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    private JPanel userProcessContainer;
+    private Supplier supplier;
     
-    public SupplierWorkAreaJPanel(JPanel userProcessContainer) {
+    public SupplierWorkAreaJPanel(JPanel userProcessContainer,Supplier supplier) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.supplier = supplier;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -66,7 +69,9 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         add(reportButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void managePButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePButtonActionPerformed
-        ManageProductCatalogJPanel manageProductCatalogJPanel = new ManageProductCatalogJPanel();
+
+        
+        ManageProductCatalogJPanel manageProductCatalogJPanel = new ManageProductCatalogJPanel(userProcessContainer,supplier);
         userProcessContainer.add("ManageProductCatalogJPanel",manageProductCatalogJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

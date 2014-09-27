@@ -1,5 +1,6 @@
 package UserInterface.SupplierRole;
 
+import Business.Product;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -11,10 +12,20 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     
     private JPanel userProcessContainer;
+    private Product product;
     
-    public ViewProductDetailJPanel(JPanel userProcessContainer) {
+    public ViewProductDetailJPanel(JPanel userProcessContainer,Product product) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.product = product;
+        
+        populateFields();
+    }
+    
+    private void populateFields () {
+        txtId.setText(String.valueOf(product.getModelID()));
+        txtName.setText(product.getProductName());
+        txtPrice.setText(String.valueOf(product.getPrice()));
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,7 +95,6 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
         btnSave.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSave.setText("SAVE");
-        btnSave.setEnabled(false);
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -94,7 +104,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-
+        txtName.setEditable(true);
+        txtPrice.setEditable(true);
+        btnSave.setEnabled(true);
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -104,7 +116,12 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        String productName = txtName.getText();
+        int price = Integer.parseInt(txtPrice.getText());
+        
+        product.setProductName(productName);
+        product.setPrice(price);
+        
     }//GEN-LAST:event_btnSaveActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

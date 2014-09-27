@@ -10,9 +10,15 @@ package Business;
  * @author zhaojiyuan
  */
 public class Product {
+    private static int count = 0;
     private String productName;
     private int modelID;
     private int price;
+    
+    public Product () {
+        count++;
+        modelID = count;
+    }
 
     public String getProductName() {
         return productName;

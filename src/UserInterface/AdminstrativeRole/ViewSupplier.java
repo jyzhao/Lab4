@@ -1,7 +1,10 @@
 package UserInterface.AdminstrativeRole;
 
+import Business.Product;
+import Business.Supplier;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,10 +13,28 @@ import javax.swing.JPanel;
 public class ViewSupplier extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
+    Supplier supplier;
     
-    public ViewSupplier(JPanel userProcessContainer) {
+    public ViewSupplier(JPanel userProcessContainer,Supplier supplier) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.supplier = supplier;
+        
+        supplierName.setText(supplier.getSupplierName());
+        populateProductCatelog();
+    }
+    
+    private void populateProductCatelog () {
+        DefaultTableModel defaultTableModel = (DefaultTableModel)productCatalog.getModel();
+        defaultTableModel.setRowCount(0);
+        
+        for(Product product: supplier.getProductCatelog().getProductList()){
+            Object row[] = new Object[3];
+            row[0] = product;
+            row[1] = product.getModelID();
+            row[2] = product.getPrice();
+            defaultTableModel.addRow(row);
+        }
     }
 
     @SuppressWarnings("unchecked")

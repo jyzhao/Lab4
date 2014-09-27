@@ -1,5 +1,6 @@
 package UserInterface.SupplierRole;
 
+import Business.Supplier;
 import Business.SupplierDirectory;
 import UserInterface.AdminstrativeRole.ViewSupplier;
 import java.awt.CardLayout;
@@ -18,6 +19,14 @@ public class LoginSupplier extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.supplierDirectory = supplierDirectory;
+        populateSupplierComboBox();
+    }
+    
+    private void populateSupplierComboBox() {
+        supplierComboBox.removeAllItems();
+        for(Supplier s:supplierDirectory.getSupplierList()){
+            supplierComboBox.addItem(s);
+        }
     }
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -51,7 +60,6 @@ public class LoginSupplier extends javax.swing.JPanel {
         jLabel2.setText("Supplier Login");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
-        supplierComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         supplierComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supplierComboBoxActionPerformed(evt);
@@ -61,7 +69,11 @@ public class LoginSupplier extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
-        SupplierWorkAreaJPanel supplierWorkAreaJPanel = new SupplierWorkAreaJPanel(userProcessContainer);
+
+        Supplier s = (Supplier) supplierComboBox.getSelectedItem();
+        
+        
+        SupplierWorkAreaJPanel supplierWorkAreaJPanel = new SupplierWorkAreaJPanel(userProcessContainer,s);
         userProcessContainer.add("SupplierWorkAreaJPanel",supplierWorkAreaJPanel);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

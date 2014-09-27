@@ -1,5 +1,7 @@
 package UserInterface.SupplierRole;
 
+import Business.Product;
+import Business.ProductCatelog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -10,10 +12,12 @@ import javax.swing.JPanel;
 public class CreateNewProductJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-
-    public CreateNewProductJPanel(JPanel userProcessContainer) {
+    private ProductCatelog productCatelog;
+    
+    public CreateNewProductJPanel(JPanel userProcessContainer,ProductCatelog productCatelog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.productCatelog = productCatelog;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,7 +80,13 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+        String productName = txtName.getText();
+        int price = Integer.parseInt(txtPrice.getText());
+        
+        Product product = productCatelog.addProduct();
+        product.setProductName(productName);
+        product.setPrice(price);
+        
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

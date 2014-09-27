@@ -1,8 +1,9 @@
 package UserInterface.AdminstrativeRole;
 
+import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-
+import Business.Supplier;
 
 /**
  *
@@ -11,10 +12,12 @@ import javax.swing.JPanel;
 public class AddSupplier extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
     
-    public AddSupplier(JPanel userProcessContainer) {
+    public AddSupplier(JPanel userProcessContainer, SupplierDirectory supplierDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
     }
 
     /** This method is called from within the constructor to
@@ -90,7 +93,9 @@ public class AddSupplier extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-
+        String supplierName = txtName.getText();
+        Supplier s = supplierDirectory.addSupplier();
+        s.setSupplierName(supplierName);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

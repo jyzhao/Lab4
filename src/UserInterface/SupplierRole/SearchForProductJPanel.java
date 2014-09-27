@@ -1,7 +1,10 @@
 package UserInterface.SupplierRole;
 
+import Business.Product;
+import Business.ProductCatelog;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -9,10 +12,13 @@ import javax.swing.JPanel;
  */
 public class SearchForProductJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
-    public SearchForProductJPanel(JPanel userProcessContainer) {
+    private JPanel userProcessContainer;
+    private ProductCatelog productCatelog;
+
+    public SearchForProductJPanel(JPanel userProcessContainer, ProductCatelog productCatelog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.productCatelog = productCatelog;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,16 +63,30 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        try {
+            int searchID = Integer.parseInt(txtId.getText());
+            Product product = productCatelog.searchProductByID(searchID);
+
+            ViewProductDetailJPanel viewProductDetailJPanel = new ViewProductDetailJPanel(userProcessContainer, product);
+            userProcessContainer.add("ViewProductDetail", viewProductDetailJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Product Model ID Not Found !!!");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid Model ID !!!");
+        }
+
 
 }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSearch;

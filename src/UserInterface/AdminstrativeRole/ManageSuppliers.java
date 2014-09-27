@@ -1,8 +1,10 @@
 package UserInterface.AdminstrativeRole;
 
+import Business.Supplier;
 import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,8 +20,20 @@ public class ManageSuppliers extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.supplierDirectory = supplierDirectory;
+        
+        populateSupplierList();
     }
   
+    private void populateSupplierList(){
+        DefaultTableModel defaultTableModel = (DefaultTableModel)supplierTable.getModel();
+        defaultTableModel.setRowCount(0);
+        for (Supplier s : supplierDirectory.getSupplierList()   ) {
+            Object row[] = new Object[1];
+            row[0] = s;
+            defaultTableModel.addRow(row);
+        }
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,10 +48,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
 
         supplierTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Supplier Name"
@@ -126,25 +137,39 @@ public class ManageSuppliers extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        populateSupplierList();
 
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
-        AddSupplier addSupplier = new AddSupplier(userProcessContainer);
+        AddSupplier addSupplier = new AddSupplier(userProcessContainer,supplierDirectory);
         userProcessContainer.add("AddSupplier",addSupplier);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-        ViewSupplier viewSupplier = new ViewSupplier(userProcessContainer);
+
+        int selectedRow = supplierTable.getSelectedRow();
+        if (selectedRow < 0) {
+            return;
+        }
+        Supplier supplier = (Supplier) supplierTable.getValueAt(selectedRow, 0);
+        
+        ViewSupplier viewSupplier = new ViewSupplier(userProcessContainer,supplier);
         userProcessContainer.add("ViewSupplier",viewSupplier);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-
+        int selectedRow = supplierTable.getSelectedRow();
+        if (selectedRow < 0) {
+            return;
+        }
+        Supplier supplier = (Supplier) supplierTable.getValueAt(selectedRow, 0);
+        supplierDirectory.deleteSupplier(supplier);
+        populateSupplierList();
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
