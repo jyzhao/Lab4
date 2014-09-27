@@ -1,5 +1,10 @@
 package UserInterface;
 
+import Business.SupplierDirectory;
+import UserInterface.AdminstrativeRole.AdminWorkAreaJPanel;
+import UserInterface.SupplierRole.LoginSupplier;
+import java.awt.CardLayout;
+
 /**
  *
  * @author Mihir Mehta / Hechen Gao
@@ -7,8 +12,11 @@ package UserInterface;
 public class MainJFrame extends javax.swing.JFrame {
     
     /** Creates new form MainJFrame */
+    private SupplierDirectory supplierDirectory;
+    
     public MainJFrame() {
         initComponents();
+        supplierDirectory = new SupplierDirectory();
     }
 
     /** This method is called from within the constructor to
@@ -88,15 +96,21 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-
+        AdminWorkAreaJPanel adminWorkAreaJPanel = new AdminWorkAreaJPanel(userProcessContainer,supplierDirectory);
+        userProcessContainer.add("AdminWA",adminWorkAreaJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnSupplierManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSupplierManagerActionPerformed
-
+        LoginSupplier loginSupplier = new LoginSupplier(userProcessContainer,supplierDirectory);
+        userProcessContainer.add("LoginSupplier",loginSupplier);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSupplierManagerActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-
+        
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     /**

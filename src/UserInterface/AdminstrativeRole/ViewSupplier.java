@@ -1,13 +1,19 @@
 package UserInterface.AdminstrativeRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Mihir Mehta / Hechen Gao
  */
 public class ViewSupplier extends javax.swing.JPanel {
 
-    public ViewSupplier() {
+    private JPanel userProcessContainer;
+    
+    public ViewSupplier(JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     @SuppressWarnings("unchecked")
@@ -78,7 +84,9 @@ public class ViewSupplier extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-      
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

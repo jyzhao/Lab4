@@ -1,5 +1,7 @@
 package UserInterface.SupplierRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -7,11 +9,14 @@ package UserInterface.SupplierRole;
  */
 public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
-    
-  
-    /** Creates new form ManageProductCatalogJPanel */
+    /**
+     * Creates new form ManageProductCatalogJPanel
+     */
+    private JPanel userProcessContainer;
+
     public ManageProductCatalogJPanel() {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,19 +122,30 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-
+        ViewProductDetailJPanel viewProductDetailJPanel = new ViewProductDetailJPanel(userProcessContainer);
+        userProcessContainer.add("ViewProductDetailJPanel", viewProductDetailJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-       
+        CreateNewProductJPanel createNewProductJPanel = new CreateNewProductJPanel(userProcessContainer);
+        userProcessContainer.add("CreateProductPanel", createNewProductJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-
+        SearchForProductJPanel searchForProductJPanel = new SearchForProductJPanel(userProcessContainer);
+        userProcessContainer.add("SearchProductJPanel",searchForProductJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed

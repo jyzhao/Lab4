@@ -1,13 +1,23 @@
 package UserInterface.AdminstrativeRole;
 
+import Business.SupplierDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Mihir Mehta / Hechen Gao
  */
 public class ManageSuppliers extends javax.swing.JPanel {
 
-    public ManageSuppliers() {
+    
+    private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
+    
+    public ManageSuppliers(JPanel userProcessContainer, SupplierDirectory supplierDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
     }
   
     @SuppressWarnings("unchecked")
@@ -120,11 +130,17 @@ public class ManageSuppliers extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
-
+        AddSupplier addSupplier = new AddSupplier(userProcessContainer);
+        userProcessContainer.add("AddSupplier",addSupplier);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-
+        ViewSupplier viewSupplier = new ViewSupplier(userProcessContainer);
+        userProcessContainer.add("ViewSupplier",viewSupplier);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
@@ -132,7 +148,9 @@ public class ManageSuppliers extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

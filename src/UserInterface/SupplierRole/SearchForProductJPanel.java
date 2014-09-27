@@ -1,13 +1,18 @@
 package UserInterface.SupplierRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Mihir Mehta / Hechen Gao
  */
 public class SearchForProductJPanel extends javax.swing.JPanel {
 
-    public SearchForProductJPanel() {
+    JPanel userProcessContainer;
+    public SearchForProductJPanel(JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -56,7 +61,9 @@ public class SearchForProductJPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
    

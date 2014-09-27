@@ -1,5 +1,8 @@
 package UserInterface.AdminstrativeRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -7,8 +10,11 @@ package UserInterface.AdminstrativeRole;
  */
 public class AddSupplier extends javax.swing.JPanel {
 
-    public AddSupplier() {
+    private JPanel userProcessContainer;
+    
+    public AddSupplier(JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     /** This method is called from within the constructor to
@@ -88,7 +94,9 @@ public class AddSupplier extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

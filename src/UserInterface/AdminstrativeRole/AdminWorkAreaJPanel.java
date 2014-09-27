@@ -1,13 +1,22 @@
 package UserInterface.AdminstrativeRole;
 
+import Business.SupplierDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author  Mihir Mehta / Hechen Gao
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
   
-    public AdminWorkAreaJPanel() {
+    private JPanel userProcessContainer;
+    private SupplierDirectory supplierDirectory;
+    
+    public AdminWorkAreaJPanel(JPanel userProcessContainer,SupplierDirectory supplierDirectory) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.supplierDirectory = supplierDirectory;
     }
     
     /** This method is called from within the constructor to
@@ -38,7 +47,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageSuppliersActionPerformed
-
+        ManageSuppliers manageSuppliers = new ManageSuppliers(userProcessContainer,supplierDirectory);
+        userProcessContainer.add("ManageSuppliers",manageSuppliers);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageSuppliersActionPerformed
     
     

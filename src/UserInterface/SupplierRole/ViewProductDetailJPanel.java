@@ -1,13 +1,20 @@
 package UserInterface.SupplierRole;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Mihir Mehta / Hechen Gao
  */
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
-    public ViewProductDetailJPanel() {
+    
+    private JPanel userProcessContainer;
+    
+    public ViewProductDetailJPanel(JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,7 +98,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
