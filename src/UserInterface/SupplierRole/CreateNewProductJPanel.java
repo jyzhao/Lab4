@@ -3,6 +3,7 @@ package UserInterface.SupplierRole;
 import Business.Product;
 import Business.ProductCatelog;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -13,8 +14,8 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private ProductCatelog productCatelog;
-    
-    public CreateNewProductJPanel(JPanel userProcessContainer,ProductCatelog productCatelog) {
+
+    public CreateNewProductJPanel(JPanel userProcessContainer, ProductCatelog productCatelog) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.productCatelog = productCatelog;
@@ -80,18 +81,30 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, 210, -1));
     }// </editor-fold>//GEN-END:initComponents
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        String productName = txtName.getText();
-        int price = Integer.parseInt(txtPrice.getText());
-        
-        Product product = productCatelog.addProduct();
-        product.setProductName(productName);
-        product.setPrice(price);
-        
+
+        try {
+            String productName = txtName.getText();
+            
+            if (productName.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid product name !!!");
+                return;
+            }
+            
+            int price = Integer.parseInt(txtPrice.getText());
+
+            Product product = productCatelog.addProduct();
+            product.setProductName(productName);
+            product.setPrice(price);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid value !!!");
+        }
+
+
 }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 

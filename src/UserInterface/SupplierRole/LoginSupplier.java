@@ -4,6 +4,7 @@ import Business.Supplier;
 import Business.SupplierDirectory;
 import UserInterface.AdminstrativeRole.ViewSupplier;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -11,24 +12,24 @@ import javax.swing.JPanel;
  * @author Mihir Mehta / Hechen Gao
  */
 public class LoginSupplier extends javax.swing.JPanel {
-    
+
     private JPanel userProcessContainer;
     private SupplierDirectory supplierDirectory;
-    
-    public LoginSupplier(JPanel userProcessContainer,SupplierDirectory supplierDirectory) {
+
+    public LoginSupplier(JPanel userProcessContainer, SupplierDirectory supplierDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.supplierDirectory = supplierDirectory;
         populateSupplierComboBox();
     }
-    
+
     private void populateSupplierComboBox() {
         supplierComboBox.removeAllItems();
-        for(Supplier s:supplierDirectory.getSupplierList()){
+        for (Supplier s : supplierDirectory.getSupplierList()) {
             supplierComboBox.addItem(s);
         }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -71,19 +72,25 @@ public class LoginSupplier extends javax.swing.JPanel {
     private void btnFindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindActionPerformed
 
         Supplier s = (Supplier) supplierComboBox.getSelectedItem();
-        
-        
-        SupplierWorkAreaJPanel supplierWorkAreaJPanel = new SupplierWorkAreaJPanel(userProcessContainer,s);
-        userProcessContainer.add("SupplierWorkAreaJPanel",supplierWorkAreaJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+
+        if (s == null) {
+            JOptionPane.showMessageDialog(null, "There is no supplier to display !!!");
+            return;
+        }
+
+        SupplierWorkAreaJPanel supplierWorkAreaJPanel = new SupplierWorkAreaJPanel(userProcessContainer, s);
+        userProcessContainer.add("SupplierWorkAreaJPanel", supplierWorkAreaJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+
+
     }//GEN-LAST:event_btnFindActionPerformed
 
     private void supplierComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierComboBoxActionPerformed
 
     }//GEN-LAST:event_supplierComboBoxActionPerformed
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFind;
     private javax.swing.JLabel jLabel1;
@@ -91,5 +98,5 @@ public class LoginSupplier extends javax.swing.JPanel {
     private javax.swing.JTextField sNmaeTextField1;
     private javax.swing.JComboBox supplierComboBox;
     // End of variables declaration//GEN-END:variables
-    
+
 }

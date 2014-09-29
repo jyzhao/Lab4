@@ -2,6 +2,7 @@ package UserInterface.SupplierRole;
 
 import Business.Product;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -10,19 +11,18 @@ import javax.swing.JPanel;
  */
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
-    
     private JPanel userProcessContainer;
     private Product product;
-    
-    public ViewProductDetailJPanel(JPanel userProcessContainer,Product product) {
+
+    public ViewProductDetailJPanel(JPanel userProcessContainer, Product product) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.product = product;
-        
+
         populateFields();
     }
-    
-    private void populateFields () {
+
+    private void populateFields() {
         txtId.setText(String.valueOf(product.getModelID()));
         txtName.setText(product.getProductName());
         txtPrice.setText(String.valueOf(product.getPrice()));
@@ -111,19 +111,30 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        String productName = txtName.getText();
-        int price = Integer.parseInt(txtPrice.getText());
-        
-        product.setProductName(productName);
-        product.setPrice(price);
-        
+        try {
+            String productName = txtName.getText();
+            
+            if (productName.equals("")) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid product name !!!");
+                return;
+            }
+            
+            int price = Integer.parseInt(txtPrice.getText());
+
+            product.setProductName(productName);
+            product.setPrice(price);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid value !!!");
+        }
+
+
     }//GEN-LAST:event_btnSaveActionPerformed
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;

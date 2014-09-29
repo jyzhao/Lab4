@@ -3,6 +3,7 @@ package UserInterface.SupplierRole;
 import Business.Product;
 import Business.Supplier;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,22 +18,21 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private Supplier supplier;
-    
-    public ManageProductCatalogJPanel(JPanel userProcessContainer,Supplier supplier) {
+
+    public ManageProductCatalogJPanel(JPanel userProcessContainer, Supplier supplier) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.supplier = supplier;
-        
+
         txtName.setText(supplier.getSupplierName());
         populateProductCatelog();
     }
-    
-    
-    private void populateProductCatelog () {
-        DefaultTableModel defaultTableModel = (DefaultTableModel)productCatalog.getModel();
+
+    private void populateProductCatelog() {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) productCatalog.getModel();
         defaultTableModel.setRowCount(0);
-        
-        for(Product product: supplier.getProductCatelog().getProductList()){
+
+        for (Product product : supplier.getProductCatelog().getProductList()) {
             Object row[] = new Object[3];
             row[0] = product;
             row[1] = product.getModelID();
@@ -147,34 +147,35 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
 
         int selectedRow = productCatalog.getSelectedRow();
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a product to view !!!");
             return;
-            
+
         }
-        Product product = (Product)productCatalog.getValueAt(selectedRow, 0);
-        
-        ViewProductDetailJPanel viewProductDetailJPanel = new ViewProductDetailJPanel(userProcessContainer,product);
+        Product product = (Product) productCatalog.getValueAt(selectedRow, 0);
+
+        ViewProductDetailJPanel viewProductDetailJPanel = new ViewProductDetailJPanel(userProcessContainer, product);
         userProcessContainer.add("ViewProductDetailJPanel", viewProductDetailJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        CreateNewProductJPanel createNewProductJPanel = new CreateNewProductJPanel(userProcessContainer,supplier.getProductCatelog());
+        CreateNewProductJPanel createNewProductJPanel = new CreateNewProductJPanel(userProcessContainer, supplier.getProductCatelog());
         userProcessContainer.add("CreateProductPanel", createNewProductJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        SearchForProductJPanel searchForProductJPanel = new SearchForProductJPanel(userProcessContainer,supplier.getProductCatelog());
-        userProcessContainer.add("SearchProductJPanel",searchForProductJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        SearchForProductJPanel searchForProductJPanel = new SearchForProductJPanel(userProcessContainer, supplier.getProductCatelog());
+        userProcessContainer.add("SearchProductJPanel", searchForProductJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -185,10 +186,12 @@ public class ManageProductCatalogJPanel extends javax.swing.JPanel {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int selectedRow = productCatalog.getSelectedRow();
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a product to delete !!!");
+
             return;
-            
+
         }
-        Product product = (Product)productCatalog.getValueAt(selectedRow, 0);
+        Product product = (Product) productCatalog.getValueAt(selectedRow, 0);
         supplier.getProductCatelog().deleteProduct(product);
         populateProductCatelog();
     }//GEN-LAST:event_btnDeleteActionPerformed

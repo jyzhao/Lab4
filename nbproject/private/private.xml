@@ -4,16 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/AddSupplier.java</file>
-            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/ViewSupplier.java</file>
+            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/Business/Product.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/LoginSupplier.java</file>
+            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/ViewSupplier.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/CreateNewProductJPanel.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/ManageSuppliers.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/SearchForProductJPanel.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/MainJFrame.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/ViewProductDetailJPanel.java</file>
-            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/AdminWorkAreaJPanel.java</file>
-            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/AdministrativeViewSupplierDetailsJPanel.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/SupplierWorkAreaJPanel.java</file>
+            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/AdministrativeViewSupplierDetailsJPanel.java</file>
+            <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/AdminstrativeRole/AdminWorkAreaJPanel.java</file>
             <file>file:/Users/zhaojiyuan/GitHub/Jiyuan_Zhao_Lab4/src/UserInterface/SupplierRole/ManageProductCatalogJPanel.java</file>
         </group>
     </open-files>

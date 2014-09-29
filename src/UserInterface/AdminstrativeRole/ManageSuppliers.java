@@ -3,6 +3,7 @@ package UserInterface.AdminstrativeRole;
 import Business.Supplier;
 import Business.SupplierDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,28 +13,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageSuppliers extends javax.swing.JPanel {
 
-    
     private JPanel userProcessContainer;
     private SupplierDirectory supplierDirectory;
-    
+
     public ManageSuppliers(JPanel userProcessContainer, SupplierDirectory supplierDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.supplierDirectory = supplierDirectory;
-        
+
         populateSupplierList();
     }
-  
-    private void populateSupplierList(){
-        DefaultTableModel defaultTableModel = (DefaultTableModel)supplierTable.getModel();
+
+    private void populateSupplierList() {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) supplierTable.getModel();
         defaultTableModel.setRowCount(0);
-        for (Supplier s : supplierDirectory.getSupplierList()   ) {
+        for (Supplier s : supplierDirectory.getSupplierList()) {
             Object row[] = new Object[1];
             row[0] = s;
             defaultTableModel.addRow(row);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,9 +142,9 @@ public class ManageSuppliers extends javax.swing.JPanel {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
-        AddSupplier addSupplier = new AddSupplier(userProcessContainer,supplierDirectory);
-        userProcessContainer.add("AddSupplier",addSupplier);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        AddSupplier addSupplier = new AddSupplier(userProcessContainer, supplierDirectory);
+        userProcessContainer.add("AddSupplier", addSupplier);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
@@ -152,19 +152,21 @@ public class ManageSuppliers extends javax.swing.JPanel {
 
         int selectedRow = supplierTable.getSelectedRow();
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a supplier to view !!!");
             return;
         }
         Supplier supplier = (Supplier) supplierTable.getValueAt(selectedRow, 0);
-        
-        ViewSupplier viewSupplier = new ViewSupplier(userProcessContainer,supplier);
-        userProcessContainer.add("ViewSupplier",viewSupplier);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+
+        ViewSupplier viewSupplier = new ViewSupplier(userProcessContainer, supplier);
+        userProcessContainer.add("ViewSupplier", viewSupplier);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
         int selectedRow = supplierTable.getSelectedRow();
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a supplier to remove !!!");
             return;
         }
         Supplier supplier = (Supplier) supplierTable.getValueAt(selectedRow, 0);
@@ -174,7 +176,7 @@ public class ManageSuppliers extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 

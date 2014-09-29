@@ -4,6 +4,7 @@ import Business.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import Business.Supplier;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -94,6 +95,12 @@ public class AddSupplier extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String supplierName = txtName.getText();
+        
+        if (supplierName.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please enter a valid supplier name !!!");
+            return;
+        }
+        
         Supplier s = supplierDirectory.addSupplier();
         s.setSupplierName(supplierName);
     }//GEN-LAST:event_btnAddActionPerformed
